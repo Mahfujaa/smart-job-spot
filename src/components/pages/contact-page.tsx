@@ -1,19 +1,11 @@
-import { createFileRoute } from "@tanstack/react-router";
+"use client";
+
+import { Mail, MapPin, Phone } from "lucide-react";
 import { useState } from "react";
-import { Mail, Phone, MapPin } from "lucide-react";
-import { useReveal } from "../hooks/use-reveal";
 
-export const Route = createFileRoute("/contact")({
-  head: () => ({
-    meta: [
-      { title: "Contact — Aigent" },
-      { name: "description", content: "Get in touch with the Aigent team." },
-    ],
-  }),
-  component: ContactPage,
-});
+import { useReveal } from "@/hooks/use-reveal";
 
-function ContactPage() {
+export function ContactPage() {
   useReveal();
   const [form, setForm] = useState({ name: "", email: "", company: "", message: "" });
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -34,27 +26,51 @@ function ContactPage() {
       <div className="container-x grid gap-10 lg:grid-cols-2">
         <div className="reveal">
           <span className="eyebrow">Contact Us</span>
-          <h1 className="mt-5 text-4xl font-black sm:text-5xl">Let's start a conversation.</h1>
-          <p className="mt-5 text-muted-foreground">Tell us what you're hiring for and we'll come back with a tailored walkthrough.</p>
+          <h1 className="mt-5 text-4xl font-black sm:text-5xl">Let&apos;s start a conversation.</h1>
+          <p className="mt-5 text-muted-foreground">
+            Tell us what you&apos;re hiring for and we&apos;ll come back with a tailored
+            walkthrough.
+          </p>
           <div className="mt-10 space-y-5 text-sm">
-            <p className="flex items-center gap-3"><span className="grid h-10 w-10 place-items-center rounded-full bg-primary/15 text-primary"><MapPin className="h-5 w-5" /></span> 22 Pembroke Lane Bristol, BS1 5QW United Kingdom</p>
-            <p className="flex items-center gap-3"><span className="grid h-10 w-10 place-items-center rounded-full bg-primary/15 text-primary"><Phone className="h-5 w-5" /></span> +1 (415) 555-0198</p>
-            <p className="flex items-center gap-3"><span className="grid h-10 w-10 place-items-center rounded-full bg-primary/15 text-primary"><Mail className="h-5 w-5" /></span> hello@aigent.com</p>
+            <p className="flex items-center gap-3">
+              <span className="grid h-10 w-10 place-items-center rounded-full bg-primary/15 text-primary">
+                <MapPin className="h-5 w-5" />
+              </span>{" "}
+              22 Pembroke Lane Bristol, BS1 5QW United Kingdom
+            </p>
+            <p className="flex items-center gap-3">
+              <span className="grid h-10 w-10 place-items-center rounded-full bg-primary/15 text-primary">
+                <Phone className="h-5 w-5" />
+              </span>{" "}
+              +1 (415) 555-0198
+            </p>
+            <p className="flex items-center gap-3">
+              <span className="grid h-10 w-10 place-items-center rounded-full bg-primary/15 text-primary">
+                <Mail className="h-5 w-5" />
+              </span>{" "}
+              hello@aigent.com
+            </p>
           </div>
         </div>
         <div className="card-surface reveal p-8">
           {sent ? (
             <div className="py-10 text-center">
-              <div className="mx-auto grid h-16 w-16 place-items-center rounded-full bg-primary/20 text-primary text-3xl">✓</div>
+              <div className="mx-auto grid h-16 w-16 place-items-center rounded-full bg-primary/20 text-3xl text-primary">
+                ✓
+              </div>
               <h3 className="mt-4 text-2xl font-bold">Message sent</h3>
-              <p className="mt-2 text-muted-foreground">We'll be in touch within one business day.</p>
+              <p className="mt-2 text-muted-foreground">
+                We&apos;ll be in touch within one business day.
+              </p>
             </div>
           ) : (
             <form onSubmit={submit} className="space-y-4">
               {(["name", "email", "company"] as const).map((k) => (
                 <div key={k}>
                   <input
-                    placeholder={k[0].toUpperCase() + k.slice(1) + (k === "company" ? " (optional)" : "")}
+                    placeholder={
+                      k[0].toUpperCase() + k.slice(1) + (k === "company" ? " (optional)" : "")
+                    }
                     value={form[k]}
                     onChange={(e) => setForm({ ...form, [k]: e.target.value })}
                     className="w-full rounded-xl border border-border bg-input px-4 py-3 text-sm outline-none focus:border-primary"
@@ -70,9 +86,13 @@ function ContactPage() {
                   onChange={(e) => setForm({ ...form, message: e.target.value })}
                   className="w-full rounded-xl border border-border bg-input px-4 py-3 text-sm outline-none focus:border-primary"
                 />
-                {errors.message && <p className="mt-1 text-xs text-destructive">{errors.message}</p>}
+                {errors.message && (
+                  <p className="mt-1 text-xs text-destructive">{errors.message}</p>
+                )}
               </div>
-              <button type="submit" className="btn-primary w-full">Send Message</button>
+              <button type="submit" className="btn-primary w-full">
+                Send Message
+              </button>
             </form>
           )}
         </div>
