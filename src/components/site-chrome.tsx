@@ -11,13 +11,14 @@ export function Logo() {
   );
 }
 
-const nav = [
+type NavItem = { to: string; label: string; isDropdown?: boolean };
+const nav: NavItem[] = [
   { to: "/", label: "Home" },
   { to: "/about", label: "About" },
   { to: "/services", label: "Pages", isDropdown: true },
   { to: "/blog", label: "Blog" },
   { to: "/contact", label: "Contact Us" },
-] as const;
+];
 
 const pagesMenu = [
   { to: "/services", label: "Services" },
