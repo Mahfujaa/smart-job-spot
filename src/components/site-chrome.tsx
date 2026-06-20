@@ -6,14 +6,12 @@ import { useEffect, useState } from "react";
 import { ChevronDown, Menu, X } from "lucide-react";
 
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 export function Logo() {
   return (
     <Link href="/" className="flex items-center gap-0 text-2xl font-black tracking-tight">
-      <span className="inline-flex items-center rounded-md bg-primary px-2 py-0.5 text-primary-foreground">
-        ai
-      </span>
-      <span className="ml-0.5 text-foreground">gent</span>
+      <Image src="/logo.png" alt="Aigent" width={100} height={100} />
     </Link>
   );
 }
