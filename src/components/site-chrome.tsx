@@ -57,7 +57,7 @@ export function Header() {
                     {pagesMenu.map((p) => (
                       <Link
                         key={p.to}
-                        to={p.to}
+                        to={p.to as any}
                         className="block rounded-lg px-3 py-2 text-sm text-foreground/85 hover:bg-muted hover:text-foreground"
                       >
                         {p.label}
@@ -69,7 +69,7 @@ export function Header() {
             ) : (
               <Link
                 key={item.to}
-                to={item.to}
+                to={item.to as any}
                 className="rounded-full px-4 py-2 text-sm font-semibold text-foreground/85 hover:text-foreground"
                 activeProps={{ className: "rounded-full px-4 py-2 text-sm font-semibold bg-primary text-primary-foreground" }}
                 activeOptions={{ exact: true }}
@@ -93,7 +93,7 @@ export function Header() {
             {nav.map((item) => (
               <Link
                 key={item.label}
-                to={item.to}
+                to={item.to as any}
                 onClick={() => setOpen(false)}
                 className="rounded-lg px-3 py-2 text-base font-semibold text-foreground/85 hover:bg-muted"
               >
@@ -103,7 +103,7 @@ export function Header() {
             {pagesMenu.map((p) => (
               <Link
                 key={p.to}
-                to={p.to}
+                to={p.to as any}
                 onClick={() => setOpen(false)}
                 className="rounded-lg px-3 py-2 pl-6 text-sm text-muted-foreground hover:bg-muted"
               >
