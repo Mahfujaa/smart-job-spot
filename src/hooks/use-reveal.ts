@@ -2,7 +2,6 @@ import { useEffect } from "react";
 
 export function useReveal() {
   useEffect(() => {
-    const els = document.querySelectorAll<HTMLElement>(".reveal");
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
@@ -12,9 +11,30 @@ export function useReveal() {
           }
         });
       },
-      { threshold: 0.12 },
+      { threshold: 0.1 },
     );
-    els.forEach((el) => io.observe(el));
-    return () => io.disconnect();
+
+    const observeElements = () => {
+      const els = document.querySelectorAll(".reveal:not(.in)");
+      els.forEach((el) => io.observe(el));
+    };
+
+    // Initial observation
+    observeElements();
+
+    // Observe DOM changes to catch dynamically inserted or hydrated elements
+    const observer = new MutationObserver(() => {
+      observeElements();
+    });
+
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+    });
+
+    return () => {
+      io.disconnect();
+      observer.disconnect();
+    };
   }, []);
 }

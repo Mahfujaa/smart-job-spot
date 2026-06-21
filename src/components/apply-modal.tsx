@@ -1,12 +1,11 @@
 "use client";
 
-import { Mail, MapPin, Phone } from "lucide-react";
 import { useState } from "react";
-import { useReveal } from "@/hooks/use-reveal";
+import { X } from "lucide-react";
+import { useApplyModal } from "@/hooks/use-apply-modal";
 
-export function ContactPage() {
-  useReveal();
-
+export function ApplyModal() {
+  const { isOpen, close } = useApplyModal();
   const [form, setForm] = useState({
     fullName: "",
     email: "",
@@ -22,6 +21,8 @@ export function ContactPage() {
 
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [sent, setSent] = useState(false);
+
+  if (!isOpen) return null;
 
   const toggleExistingAccount = (account: string) => {
     setForm((prev) => ({
@@ -72,80 +73,46 @@ export function ContactPage() {
           trafficSource: "Search Engine (Google, Bing, etc.)",
         });
         setSent(false);
-      }, 4000);
+        close();
+      }, 3000);
     }
   }
 
   return (
-    <section className="pt-16 pb-24 sm:pt-24">
-      <div className="container-x grid gap-12 lg:grid-cols-12">
-        {/* Contact Info (Col-5) */}
-        <div className="lg:col-span-5 space-y-8 reveal">
-          <div>
-            <span className="eyebrow">Contact Us</span>
-            <h1 className="mt-5 text-4xl sm:text-5xl text-foreground">
-              Let&apos;s start a conversation.
-            </h1>
-            <p className="mt-5 text-muted-foreground leading-relaxed">
-              Book a no-pressure consultation. We&apos;ll walk you through capital requirements,
-              expected timelines and the marketplaces best suited to your investment profile.
+    <div
+      className="fixed inset-0 z-[100] grid place-items-center bg-background/80 p-4 backdrop-blur-sm overflow-y-auto"
+      onClick={close}
+    >
+      <div
+        onClick={(e) => e.stopPropagation()}
+        className="card-surface relative w-full max-w-xl my-8 p-6 sm:p-8 bg-card max-h-[90vh] overflow-y-auto scrollbar-thin"
+      >
+        <button
+          onClick={close}
+          className="absolute top-4 right-4 grid h-9 w-9 place-items-center rounded-full bg-secondary hover:bg-muted text-foreground transition"
+          aria-label="Close modal"
+        >
+          <X className="h-4 w-4" />
+        </button>
+
+        {sent ? (
+          <div className="py-12 text-center">
+            <div className="mx-auto grid h-16 w-16 place-items-center rounded-full bg-primary/20 text-4xl text-primary animate-bounce">
+              ✓
+            </div>
+            <h3 className="mt-6 text-3xl font-black text-foreground">Thank You!</h3>
+            <p className="mt-3 text-muted-foreground text-lg">
+              We will contact you within 12 hours.
             </p>
           </div>
+        ) : (
+          <>
+            <h3 className="text-2xl sm:text-3xl font-black text-foreground">Apply for a Store</h3>
+            <p className="mt-2 text-sm text-muted-foreground">
+              Tell us about you and we&apos;ll match you with the right service.
+            </p>
 
-          <div className="space-y-6 text-sm">
-            <div className="flex items-start gap-4">
-              <span className="grid h-10 w-10 place-items-center rounded-xl bg-primary/10 text-primary shrink-0">
-                <MapPin className="h-5 w-5" />
-              </span>
-              <div>
-                <p className="font-bold text-foreground mb-1">Our Location</p>
-                <p className="text-muted-foreground leading-relaxed">
-                  H-68/1, Omor Ali Lane, West Rampura, Dhaka-1219, Bangladesh
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-4">
-              <span className="grid h-10 w-10 place-items-center rounded-xl bg-primary/10 text-primary shrink-0">
-                <Phone className="h-5 w-5" />
-              </span>
-              <div>
-                <p className="font-bold text-foreground mb-1">Call Us</p>
-                <p className="text-muted-foreground">+880 1XXX-XXXXXX</p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-4">
-              <span className="grid h-10 w-10 place-items-center rounded-xl bg-primary/10 text-primary shrink-0">
-                <Mail className="h-5 w-5" />
-              </span>
-              <div>
-                <p className="font-bold text-foreground mb-1">Email Us</p>
-                <p className="text-muted-foreground">info@ecomsolutionsbd.com</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Store Application Form (Col-7) */}
-        <div className="lg:col-span-7 card-surface reveal p-6 sm:p-8 bg-card/45 relative">
-          {sent ? (
-            <div className="py-20 text-center space-y-4">
-              <div className="mx-auto grid h-16 w-16 place-items-center rounded-full bg-primary/20 text-4xl text-primary animate-bounce">
-                ✓
-              </div>
-              <h3 className="text-2xl font-black text-foreground">Thank You!</h3>
-              <p className="text-muted-foreground">We will contact you within 12 hours.</p>
-            </div>
-          ) : (
-            <form onSubmit={submit} className="space-y-6">
-              <div className="space-y-2">
-                <h2 className="text-2xl text-foreground">Apply for a Store</h2>
-                <p className="text-xs text-muted-foreground">
-                  Fill in details and our in-house manager will review your submission.
-                </p>
-              </div>
-
+            <form onSubmit={submit} className="mt-6 space-y-5 text-left">
               {/* Personal Details */}
               <div className="grid gap-4 sm:grid-cols-2">
                 <div>
@@ -232,7 +199,7 @@ export function ContactPage() {
                   ].map((acc) => (
                     <label
                       key={acc}
-                      className="flex items-center gap-3 rounded-xl border border-border bg-input/40 px-4 py-3 text-sm cursor-pointer select-none hover:bg-input transition text-foreground"
+                      className="flex items-center gap-3 rounded-xl border border-border bg-input/50 px-4 py-3 text-sm cursor-pointer select-none hover:bg-input transition text-foreground"
                     >
                       <input
                         type="checkbox"
@@ -261,7 +228,7 @@ export function ContactPage() {
                   ].map((srv) => (
                     <label
                       key={srv}
-                      className="flex items-center gap-3 rounded-xl border border-border bg-input/40 px-4 py-3 text-sm cursor-pointer select-none hover:bg-input transition text-foreground"
+                      className="flex items-center gap-3 rounded-xl border border-border bg-input/50 px-4 py-3 text-sm cursor-pointer select-none hover:bg-input transition text-foreground"
                     >
                       <input
                         type="checkbox"
@@ -285,7 +252,7 @@ export function ContactPage() {
                     (lim) => (
                       <label
                         key={lim}
-                        className="flex items-center gap-3 rounded-xl border border-border bg-input/40 px-4 py-3 text-sm cursor-pointer select-none hover:bg-input transition text-foreground"
+                        className="flex items-center gap-3 rounded-xl border border-border bg-input/50 px-4 py-3 text-sm cursor-pointer select-none hover:bg-input transition text-foreground"
                       >
                         <input
                           type="radio"
@@ -333,7 +300,7 @@ export function ContactPage() {
                 <textarea
                   placeholder="Anything you'd like us to know…"
                   value={form.message}
-                  rows={4}
+                  rows={3}
                   onChange={(e) => setForm({ ...form, message: e.target.value })}
                   className="w-full rounded-xl border border-border bg-input px-4 py-3 text-sm outline-none focus:border-primary text-foreground transition"
                 />
@@ -343,9 +310,9 @@ export function ContactPage() {
                 Submit Information
               </button>
             </form>
-          )}
-        </div>
+          </>
+        )}
       </div>
-    </section>
+    </div>
   );
 }

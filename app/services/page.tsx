@@ -3,9 +3,8 @@ import type { Metadata } from "next";
 import { ServicesPage } from "@/components/pages/services-page";
 
 export const metadata: Metadata = {
-  title: "Services — Aigent",
-  description:
-    "Sourcing, screening, scoring, and outreach — all powered by Aigent's intelligent recruiting platform.",
+  title: "Services — Ecom Solutions",
+  description: "Six battle-tested service lines across Amazon, Walmart, eBay & Facebook shops.",
 };
 
 export default function Page() {

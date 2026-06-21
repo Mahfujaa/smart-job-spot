@@ -3,8 +3,8 @@ import type { Metadata } from "next";
 import { FAQPage } from "@/components/pages/faq-page";
 
 export const metadata: Metadata = {
-  title: "FAQ — Aigent",
-  description: "Answers to the questions teams ask before adopting Aigent.",
+  title: "FAQ — Ecom Solutions",
+  description: "Frequently asked questions about e-commerce dropshipping and FBA store automation.",
 };
 
 export default function Page() {

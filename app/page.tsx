@@ -3,9 +3,9 @@ import type { Metadata } from "next";
 import { HomePage } from "@/components/pages/home-page";
 
 export const metadata: Metadata = {
-  title: "Aigent — Empower your recruiting flow",
+  title: "Ecom Solutions — Full-Service Amazon & E-commerce Store Management",
   description:
-    "AI-powered recruitment that automates outreach, scores candidates, and accelerates hiring.",
+    "We build, operate, and scale your Amazon, Walmart, eBay & Facebook stores — hands-free passive income for investors.",
 };
 
 export default function Page() {
