@@ -35,11 +35,12 @@ export function HomePage() {
   return (
     <>
       <Hero onApply={openApplyModal} />
+      <AboutSection />
       <ServicesSection />
       <ValueProp />
       <BenefitsSection />
       <Process />
-      <StickyRevealSection />
+      {/* <StickyRevealSection /> */}
       <Stats />
       <ReviewCarousel />
       <FAQSection onApply={openApplyModal} />
@@ -50,14 +51,175 @@ export function HomePage() {
 
 function Hero({ onApply }: { onApply: () => void }) {
   return (
-    <section className="relative overflow-hidden pt-16 pb-24 sm:pt-24 sm:pb-36">
-      {/* Background Image */}
+    <section className="relative overflow-hidden pt-32 pb-24 sm:pt-40 sm:pb-32 flex flex-col items-center justify-center min-h-[95vh]">
+      {/* Background Image with overlay */}
       <div
         className="absolute inset-0 -z-10 bg-cover bg-center bg-no-repeat opacity-60"
         style={{
           backgroundImage: "url('/grad-scaled.png')",
         }}
       />
+      {/* Grid Overlay */}
+      <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#15171d_1px,transparent_1px),linear-gradient(to_bottom,#15171d_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-30 pointer-events-none" />
+
+      <div className="container-x w-full flex flex-col items-center justify-center">
+        <div className="max-w-5xl mx-auto flex flex-col items-center text-center space-y-6">
+          {/* Top Badge */}
+          <div className="reveal inline-flex items-center gap-2 rounded-lg border border-border bg-card/60 px-4 py-2 text-xs font-semibold backdrop-blur">
+            <span className="flex items-center justify-center bg-primary/10 p-1 rounded">
+              <svg
+                className="w-3.5 h-3.5 text-primary fill-current"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 6l1.62 3.28 3.62.53-2.62 2.55.62 3.61L12 15.27l-3.24 1.7.62-3.61-2.62-2.55 3.62-.53L12 7z" />
+              </svg>
+            </span>
+            <span className="text-white">#1 Partner For E-commerce Scaling</span>
+          </div>
+
+          {/* Heading */}
+          <h1 className="reveal text-5xl sm:text-7xl lg:text-[5.5rem] font-bold tracking-tight text-white leading-[1.05] max-w-4xl">
+            We do the heavy lifting, so you can do the{" "}
+            <span className="text-primary">easy living.</span>
+          </h1>
+
+          {/* Subtitle */}
+          <p className="reveal text-sm sm:text-base md:text-lg text-muted-foreground max-w-3xl leading-relaxed mt-4">
+            We are a full-service Amazon seller store management agency. We build, operate, and
+            scale your store from the ground up — producing passive income with aggressive tactics
+            at Ecom Solutions.
+          </p>
+          {/* CTAs */}
+          <div className="reveal flex flex-wrap gap-4 pt-2">
+            <button onClick={onApply} className="btn-primary rounded-[6px] px-8 py-4">
+              Apply for a Store
+            </button>
+            <a
+              href="#services"
+              className="relative p-[1px] overflow-hidden rounded-[6px] inline-flex items-center justify-center bg-transparent group shadow-[0_0_15px_-3px_rgba(80,118,246,0.2)] hover:shadow-[0_0_25px_rgba(80,118,246,0.5)] transition-all duration-300"
+            >
+              {/* Rotating border beam */}
+              <span
+                className="absolute top-1/2 left-1/2 min-w-[200px] min-h-[200px] w-[150%] aspect-square bg-[conic-gradient(from_0deg,transparent_40%,var(--color-primary)_50%,transparent_60%)] animate-border-beam pointer-events-none"
+                style={{
+                  transform: "translate(-50%, -50%)",
+                }}
+              />
+              {/* Inner button surface */}
+              <span className="relative z-10 btn-ghost rounded-[5px] px-8 py-4 inline-flex items-center gap-2 bg-[#15171d] hover:bg-[#1b1e26] w-full h-full transition-all duration-200">
+                Explore our services{" "}
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </span>
+            </a>
+          </div>
+        </div>
+
+        {/* Bottom Brands */}
+        <div className="reveal w-full mt-24 border-t border-border/40 pt-8 flex flex-col items-center space-y-6">
+          <p className="text-xs text-muted-foreground uppercase tracking-widest font-semibold">
+            Companies that partner with Ecom Solutions
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-x-16 gap-y-8 opacity-65">
+            {/* Logo 1 */}
+            <div className="flex items-center gap-2">
+              <svg
+                className="h-10 w-auto text-muted-foreground fill-current"
+                viewBox="0 0 120 30"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M10 5 L20 15 L10 25 L0 15 Z" className="fill-current" />
+                <text
+                  x="28"
+                  y="20"
+                  className="font-mono font-black text-sm uppercase tracking-wider fill-current"
+                >
+                  LOGOIPSUM
+                </text>
+              </svg>
+            </div>
+            {/* Logo 2 */}
+            <div className="flex items-center gap-2">
+              <svg
+                className="h-10 w-auto text-muted-foreground fill-current"
+                viewBox="0 0 120 30"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle cx="10" cy="15" r="8" className="stroke-current stroke-2 fill-none" />
+                <circle cx="10" cy="15" r="4" className="fill-current" />
+                <text
+                  x="25"
+                  y="20"
+                  className="font-mono font-black text-sm uppercase tracking-wider fill-current"
+                >
+                  LOGOIPSUM
+                </text>
+              </svg>
+            </div>
+            {/* Logo 3 */}
+            <div className="flex items-center gap-2">
+              <svg
+                className="h-10 w-auto text-muted-foreground fill-current"
+                viewBox="0 0 120 30"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <rect x="2" y="5" width="8" height="8" rx="1" className="fill-current" />
+                <rect x="12" y="5" width="8" height="8" rx="1" className="fill-current" />
+                <rect x="2" y="15" width="8" height="8" rx="1" className="fill-current" />
+                <rect x="12" y="15" width="8" height="8" rx="1" className="fill-current" />
+                <text
+                  x="28"
+                  y="20"
+                  className="font-mono font-black text-sm uppercase tracking-wider fill-current"
+                >
+                  LOGOIPSUM
+                </text>
+              </svg>
+            </div>
+            {/* Logo 4 */}
+            <div className="flex items-center gap-2">
+              <svg
+                className="h-10 w-auto text-muted-foreground fill-current"
+                viewBox="0 0 120 30"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <polygon points="10,4 18,20 2,20" className="fill-current" />
+                <text
+                  x="26"
+                  y="20"
+                  className="font-mono font-black text-sm uppercase tracking-wider fill-current"
+                >
+                  LOGOIPSUM
+                </text>
+              </svg>
+            </div>
+            {/* Logo 5 */}
+            <div className="flex items-center gap-2">
+              <svg
+                className="h-10 w-auto text-muted-foreground fill-current"
+                viewBox="0 0 120 30"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M4 15 h12 v4 h-12 z M8 7 h8 v4 h-8 z" className="fill-current" />
+                <text
+                  x="26"
+                  y="20"
+                  className="font-mono font-black text-sm uppercase tracking-wider fill-current"
+                >
+                  LOGOIPSUM
+                </text>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function AboutSection() {
+  return (
+    <section className="relative overflow-hidden pt-16 pb-24 sm:pt-24 sm:pb-36">
       <div className="container-x">
         <div className="grid gap-12 lg:grid-cols-12 items-center">
           <div className="lg:col-span-7 text-left space-y-6">
@@ -78,32 +240,8 @@ function Hero({ onApply }: { onApply: () => void }) {
               at Ecom Solutions.
             </p>
 
-            {/* CTAs */}
-            <div className="reveal flex flex-wrap gap-4 pt-2">
-              <button onClick={onApply} className="btn-primary rounded-[6px] px-8 py-4">
-                Apply for a Store
-              </button>
-              <a
-                href="#services"
-                className="relative p-[1px] overflow-hidden rounded-[6px] inline-flex items-center justify-center bg-transparent group shadow-[0_0_15px_-3px_rgba(80,118,246,0.2)] hover:shadow-[0_0_25px_rgba(80,118,246,0.5)] transition-all duration-300"
-              >
-                {/* Rotating border beam */}
-                <span
-                  className="absolute top-1/2 left-1/2 min-w-[200px] min-h-[200px] w-[150%] aspect-square bg-[conic-gradient(from_0deg,transparent_40%,var(--color-primary)_50%,transparent_60%)] animate-border-beam pointer-events-none"
-                  style={{
-                    transform: "translate(-50%, -50%)",
-                  }}
-                />
-                {/* Inner button surface */}
-                <span className="relative z-10 btn-ghost rounded-[5px] px-8 py-4 inline-flex items-center gap-2 bg-[#15171d] hover:bg-[#1b1e26] w-full h-full transition-all duration-200">
-                  Explore our services{" "}
-                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                </span>
-              </a>
-            </div>
-
             {/* Trust Badges */}
-            <div className="reveal pt-6 border-t border-border/60">
+            <div className="reveal pt-6 ">
               <div className="flex flex-wrap gap-x-6 gap-y-3 text-sm font-semibold text-foreground/80">
                 <span className="flex items-center gap-2">
                   <CheckCircle2 className="h-4.5 w-4.5 text-primary" /> No outsourcing
@@ -149,351 +287,134 @@ function Hero({ onApply }: { onApply: () => void }) {
 }
 
 function ServicesSection() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [progress, setProgress] = useState(0);
-  const [entryProgress, setEntryProgress] = useState(0);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!containerRef.current) return;
-      const rect = containerRef.current.getBoundingClientRect();
-      const totalHeight = rect.height - window.innerHeight;
-      if (totalHeight <= 0) return;
-
-      const distanceToTop = rect.top;
-      const currentEntry = 1 - Math.max(0, Math.min(1, distanceToTop / window.innerHeight));
-      setEntryProgress(currentEntry);
-
-      const scrolled = -rect.top;
-      const currentProgress = Math.max(0, Math.min(1, scrolled / totalHeight));
-      setProgress(currentProgress);
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    window.addEventListener("resize", handleScroll);
-    handleScroll();
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("resize", handleScroll);
-    };
-  }, []);
-
   const services = [
     {
       num: "01",
+      icon: Briefcase,
       eyebrow: "Amazon Store Automation",
       title: "Hands-Free Amazon Business Scaling",
       desc: "We build, scale, and fully operate your Amazon store. Leveraging advanced sourcing, inventory management, and 24/7 account health monitoring to maximize returns.",
       points: [
-        { label: "Optimal Buy Box Win Strategies", val: "Continuous dynamic pricing adjustments." },
-        {
-          label: "100% In-House Account Operations",
-          val: "Dhaka operations team, zero outsourcing.",
-        },
-        {
-          label: "Amazon FBA & WFS Sourcing",
-          val: "Direct supplier relationships and fast shipping.",
-        },
+        "Optimal Buy Box Win Strategies",
+        "100% In-House Account Operations",
+        "Amazon FBA & WFS Sourcing",
       ],
     },
     {
       num: "02",
+      icon: ShoppingBag,
       eyebrow: "Walmart Marketplace Automation",
-      title: "Tap into Walmart's Rapidly Growing WFS",
+      title: "Tap into Walmart's WFS Sourcing",
       desc: "Launch your store on Walmart Marketplace. Leverage Walmart Fulfillment Services (WFS) and direct dropshipping channels to capture millions of unique monthly buyers.",
       points: [
-        { label: "Walmart WFS Integration", val: "Complete inventory prep and shipment tracking." },
-        {
-          label: "Fast Application Approval",
-          val: "Expert approval process with Walmart compliance.",
-        },
-        {
-          label: "Catalog Expansion & Sourcing",
-          val: "Daily catalog updates with trending products.",
-        },
+        "Walmart WFS Integration",
+        "Fast Application Approval",
+        "Catalog Expansion & Sourcing",
       ],
     },
     {
       num: "03",
+      icon: Layers,
       eyebrow: "Multi-Channel Automation",
-      title: "Scale Across eBay and Facebook Shops",
+      title: "Scale Across eBay & Facebook Shops",
       desc: "Diversify your e-commerce portfolio. We establish and automate fully-managed stores on eBay and Facebook Shops to capture organic buyer traffic from multiple surfaces.",
-      points: [
-        { label: "Organic Facebook Traffic", val: "Leveraging direct social media checkouts." },
-        {
-          label: "eBay Bulk Listing Setup",
-          val: "Automated listing, inventory Sync and seller feedback.",
-        },
-        {
-          label: "Risk Mitigation and Health",
-          val: "Compliance guards to protect your store assets.",
-        },
-      ],
+      points: ["Organic Facebook Traffic", "eBay Bulk Listing Setup", "Risk Mitigation and Health"],
     },
   ];
 
-  // Determine opacities and transforms of Left/Right images based on entryProgress and progress
-  let sideOpacity = 0;
-  let sideTranslateY = -100;
-
-  if (progress === 0) {
-    sideOpacity = entryProgress;
-    sideTranslateY = -100 + entryProgress * 100;
-  } else if (progress < 0.08) {
-    const p2Progress = progress / 0.08;
-    sideOpacity = 1 - p2Progress;
-    sideTranslateY = 0;
-  } else {
-    sideOpacity = 0;
-    sideTranslateY = 0;
-  }
-
-  // Middle image crossfades
-  let img1Opacity = 0;
-  let img2Opacity = 0;
-  let img3Opacity = 0;
-
-  if (progress < 0.35) {
-    img1Opacity = 1;
-  } else if (progress < 0.4) {
-    const t = (progress - 0.35) / 0.05;
-    img1Opacity = 1 - t;
-    img2Opacity = t;
-  } else if (progress < 0.65) {
-    img2Opacity = 1;
-  } else if (progress < 0.7) {
-    const t = (progress - 0.65) / 0.05;
-    img2Opacity = 1 - t;
-    img3Opacity = t;
-  } else {
-    img3Opacity = 1;
-  }
-
-  // Calculate local fade/slide progress for each service's text content
-  const getContentStyles = (idx: number) => {
-    let opacity = 0;
-    let translateY = 40;
-
-    if (idx === 0 && progress >= 0.08 && progress < 0.4) {
-      if (progress < 0.13) {
-        const t = (progress - 0.08) / 0.05;
-        opacity = t;
-        translateY = 40 - t * 40;
-      } else if (progress < 0.35) {
-        opacity = 1;
-        translateY = 0;
-      } else {
-        const t = (progress - 0.35) / 0.05;
-        opacity = 1 - t;
-        translateY = -t * 40;
-      }
-    } else if (idx === 1 && progress >= 0.4 && progress < 0.7) {
-      if (progress < 0.45) {
-        const t = (progress - 0.4) / 0.05;
-        opacity = t;
-        translateY = 40 - t * 40;
-      } else if (progress < 0.65) {
-        opacity = 1;
-        translateY = 0;
-      } else {
-        const t = (progress - 0.65) / 0.05;
-        opacity = 1 - t;
-        translateY = -t * 40;
-      }
-    } else if (idx === 2 && progress >= 0.7) {
-      if (progress < 0.75) {
-        const t = (progress - 0.7) / 0.05;
-        opacity = t;
-        translateY = 40 - t * 40;
-      } else {
-        opacity = 1;
-        translateY = 0;
-      }
-    }
-
-    return {
-      opacity,
-      top: "50%",
-      transform: `translateY(calc(-50% + ${translateY}px))`,
-      transition: "opacity 0.2s ease-out, transform 0.2s ease-out",
-    };
-  };
+  const images = ["/service1.png", "/service2.png", "/service3.png"];
 
   return (
-    <section ref={containerRef} id="services" className="relative h-[400vh] bg-transparent">
-      {/* Sticky Container viewport */}
-      <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-col justify-center items-center bg-[#07080a] border-t border-border">
-        {/* Decorative Grid Background */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#15171d_1px,transparent_1px),linear-gradient(to_bottom,#15171d_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-30 pointer-events-none" />
+    <section id="services" className="relative py-24 sm:py-32 border-t border-border bg-[#07080a]">
+      {/* Decorative Grid Background */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#15171d_1px,transparent_1px),linear-gradient(to_bottom,#15171d_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-30 pointer-events-none" />
 
-        <div className="container-x relative w-full h-[85vh] flex flex-col justify-center">
-          {/* Main 3-Column Interactive Layout */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center h-full relative">
-            {/* LEFT COLUMN */}
-            <div className="hidden lg:block lg:col-span-4 h-full flex flex-col justify-center relative">
-              {/* Phase 1 & 2: Left mockup image */}
-              {progress < 0.08 && (
-                <div
-                  className="w-full flex justify-center transition-all duration-300"
-                  style={{
-                    opacity: sideOpacity,
-                    transform: `translateY(${sideTranslateY}px)`,
-                  }}
-                >
-                  <div className="relative w-[320px] sm:w-[350px] aspect-[9/19.5] rounded-[2rem] overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.6)] bg-transparent">
-                    <img
-                      src="/service2.png"
-                      className="w-full h-full object-cover"
-                      alt="Service 2 Preview"
-                    />
-                  </div>
-                </div>
-              )}
+      <div className="container-x relative">
+        {/* Section Header */}
+        <div className="reveal text-center max-w-3xl mx-auto space-y-4 mb-16">
+          <span className="eyebrow uppercase tracking-wider">Our Services</span>
+          <h2 className="text-3xl sm:text-5xl text-foreground">
+            <ScrollRevealText text="Marketplace Channels We Operate & Scale" />
+          </h2>
+          <p className="text-muted-foreground max-w-2xl mx-auto">
+            We specialize in building, operating, and scaling fully-managed storefronts across the
+            world&apos;s most lucrative e-commerce platforms.
+          </p>
+        </div>
 
-              {/* Phase 3-5: Service content */}
-              {progress >= 0.08 &&
-                services.map((s, idx) => (
-                  <div
-                    key={s.num}
-                    className="absolute inset-x-0 py-8 space-y-6 text-left"
-                    style={getContentStyles(idx)}
-                  >
-                    <span className="eyebrow uppercase tracking-wider">{s.eyebrow}</span>
-                    <h3 className="text-3xl sm:text-4xl font-semibold text-foreground leading-tight">
-                      {s.title}
-                    </h3>
-                    <p className="text-base text-muted-foreground leading-relaxed">{s.desc}</p>
-                    <button className="btn-primary rounded-[6px] px-8 py-3.5 mt-2 shadow-[0_0_20px_rgba(80,118,246,0.2)]">
-                      Explore {s.eyebrow.split(" ")[0]}
-                    </button>
-                  </div>
-                ))}
-            </div>
-
-            {/* MIDDLE COLUMN: Always static centered mockup phone */}
-            <div className="col-span-12 lg:col-span-4 flex flex-col justify-center items-center h-full relative z-20">
-              <div className="relative w-[320px] sm:w-[350px] aspect-[9/19.5] rounded-[2rem] shadow-[0_25px_60px_rgba(0,0,0,0.6)] overflow-hidden bg-transparent">
-                {/* Service 1 Screenshot */}
-                <img
-                  src="/service1.png"
-                  className="absolute inset-0 w-full h-full object-cover transition-opacity duration-300"
-                  style={{ opacity: img1Opacity }}
-                  alt="Service 1 Screen"
-                />
-                {/* Service 2 Screenshot */}
-                <img
-                  src="/service2.png"
-                  className="absolute inset-0 w-full h-full object-cover transition-opacity duration-300"
-                  style={{ opacity: img2Opacity }}
-                  alt="Service 2 Screen"
-                />
-                {/* Service 3 Screenshot */}
-                <img
-                  src="/service3.png"
-                  className="absolute inset-0 w-full h-full object-cover transition-opacity duration-300"
-                  style={{ opacity: img3Opacity }}
-                  alt="Service 3 Screen"
-                />
-              </div>
-
-              {/* Mobile Viewport Service Content Stacked Below Mockup */}
-              <div className="block lg:hidden mt-6 w-full max-w-sm px-4 relative h-[180px] overflow-hidden text-center">
-                {progress >= 0.08 ? (
-                  services.map((s, idx) => (
-                    <div
-                      key={s.num}
-                      className="absolute inset-x-0 py-2 space-y-3"
-                      style={getContentStyles(idx)}
-                    >
-                      <span className="text-[10px] eyebrow uppercase tracking-wider">
-                        {s.eyebrow}
-                      </span>
-                      <h3 className="text-xl font-semibold text-foreground">{s.title}</h3>
-                      <p className="text-xs text-muted-foreground leading-relaxed max-w-xs mx-auto">
-                        {s.desc}
-                      </p>
-                    </div>
-                  ))
-                ) : (
-                  <div className="flex flex-col items-center justify-center h-full space-y-2 opacity-80">
-                    <span className="text-xs eyebrow uppercase tracking-wider">
-                      Marketplace Channels
-                    </span>
-                    <p className="text-xs text-muted-foreground">
-                      Scroll down to see our fully-managed automation services.
-                    </p>
-                  </div>
-                )}
-              </div>
-            </div>
-
-            {/* RIGHT COLUMN */}
-            <div className="hidden lg:block lg:col-span-4 h-full flex flex-col justify-center relative">
-              {/* Phase 1 & 2: Right mockup image */}
-              {progress < 0.08 && (
-                <div
-                  className="w-full flex justify-center transition-all duration-300"
-                  style={{
-                    opacity: sideOpacity,
-                    transform: `translateY(${sideTranslateY}px)`,
-                  }}
-                >
-                  <div className="relative w-[320px] sm:w-[350px] aspect-[9/19.5] rounded-[2rem] overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.6)] bg-transparent">
-                    <img
-                      src="/service3.png"
-                      className="w-full h-full object-cover"
-                      alt="Service 3 Preview"
-                    />
-                  </div>
-                </div>
-              )}
-
-              {/* Phase 3-5: Service points */}
-              {progress >= 0.08 &&
-                services.map((s, idx) => (
-                  <div
-                    key={s.num}
-                    className="absolute inset-x-0 py-8 space-y-6 text-left"
-                    style={getContentStyles(idx)}
-                  >
-                    <h4 className="text-xs font-bold text-muted-foreground uppercase tracking-widest border-b border-border/55 pb-2">
-                      Key Program Features
-                    </h4>
-                    <div className="space-y-6">
-                      {s.points.map((p, pIdx) => (
-                        <div key={pIdx} className="flex gap-4 items-start group">
-                          <span className="grid h-8 w-8 place-items-center rounded-lg bg-primary/10 text-primary shrink-0 border border-primary/20 group-hover:scale-110 transition-transform">
-                            ✓
-                          </span>
-                          <div>
-                            <p className="font-bold text-foreground text-sm sm:text-base leading-tight">
-                              {p.label}
-                            </p>
-                            <p className="text-xs sm:text-sm text-muted-foreground mt-1 leading-normal">
-                              {p.val}
-                            </p>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-            </div>
-          </div>
-
-          {/* Scrolling progress indicator */}
-          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 opacity-60">
-            <span className="text-[10px] uppercase tracking-widest text-muted-foreground">
-              Scroll to explore
-            </span>
-            <div className="w-1.5 h-6 bg-border/40 rounded-full relative overflow-hidden">
-              <div
-                className="w-full bg-primary rounded-full absolute top-0 left-0 transition-all duration-300"
-                style={{ height: `${progress * 100}%` }}
+        {/* 3 Scrolling Mockup Images */}
+        <div className="reveal overflow-x-auto flex gap-6 pb-8 snap-x snap-mandatory scrollbar-none justify-start md:justify-center px-4 -mx-4">
+          {images.map((img, idx) => (
+            <div
+              key={idx}
+              className="flex-shrink-0 snap-center w-[270px] sm:w-[300px] aspect-[9/19.5] rounded-[2rem] overflow-hidden  hover:border-primary/45 transition-all duration-300 relative group"
+            >
+              <img
+                src={img}
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                alt={`Service Preview ${idx + 1}`}
               />
             </div>
-          </div>
+          ))}
+        </div>
+
+        {/* Services Cards with Icon & Text */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mt-16">
+          {services.map((s) => {
+            const IconComponent = s.icon;
+            return (
+              <div
+                key={s.num}
+                className="reveal card-surface p-8 text-left flex flex-col justify-between bg-[#1a1c22]/40 border border-border/80 rounded-2xl transition-all duration-300 hover:border-primary/45 hover:-translate-y-1 group"
+              >
+                <div className="space-y-6">
+                  {/* Icon Header */}
+                  <div className="flex justify-between items-start">
+                    <div className="grid h-12 w-12 place-items-center rounded-xl bg-primary/10 text-primary border border-primary/20 group-hover:scale-110 transition-transform duration-300">
+                      <IconComponent className="h-6 w-6" />
+                    </div>
+                    <span className="font-mono text-sm font-bold text-muted-foreground/30">
+                      {s.num}
+                    </span>
+                  </div>
+
+                  {/* Title & Desc */}
+                  <div className="space-y-2">
+                    <span className="text-[10px] text-primary font-bold uppercase tracking-wider">
+                      {s.eyebrow}
+                    </span>
+                    <h3 className="text-xl sm:text-2xl font-bold text-foreground leading-tight">
+                      {s.title}
+                    </h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
+                  </div>
+
+                  {/* Key points checklist */}
+                  <ul className="space-y-2 pt-2 border-t border-border/40">
+                    {s.points.map((pt, ptIdx) => (
+                      <li
+                        key={ptIdx}
+                        className="flex gap-2.5 items-center text-xs font-semibold text-foreground/80"
+                      >
+                        <span className="text-primary font-bold">✓</span>
+                        <span>{pt}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="pt-8">
+                  <a
+                    href="#faq"
+                    className="inline-flex items-center gap-2 text-xs font-bold text-primary group-hover:text-primary-foreground tracking-wider uppercase transition-colors"
+                  >
+                    Explore Channel{" "}
+                    <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-1" />
+                  </a>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
@@ -529,7 +450,7 @@ function ValueProp() {
   ];
 
   return (
-    <section className="border-t border-border py-24 bg-card/10">
+    <section className="py-24 bg-card/10">
       <div className="container-x">
         <div className="grid gap-12 lg:grid-cols-12 items-center">
           {/* Left Column - Checklist */}
@@ -566,13 +487,6 @@ function ValueProp() {
                     key={title}
                     className="relative p-[1px] overflow-hidden rounded-[1.25rem] bg-transparent group reveal transition duration-300 shadow-[0_0_30px_-12px_rgba(80,118,246,0.08)] hover:shadow-[0_0_30px_-5px_rgba(80,118,246,0.2)]"
                   >
-                    {/* Rotating border beam */}
-                    <span
-                      className="absolute top-1/2 left-1/2 min-w-[300px] min-h-[300px] w-[200%] aspect-square bg-[conic-gradient(from_0deg,transparent_40%,var(--color-primary)_50%,transparent_60%)] animate-border-beam pointer-events-none"
-                      style={{
-                        transform: "translate(-50%, -50%)",
-                      }}
-                    />
                     {/* Inner content container */}
                     <div className="relative z-10 w-full h-full bg-card rounded-[1.2rem] p-6 flex gap-5 items-start">
                       <div className="grid h-12 w-12 place-items-center rounded-xl bg-primary/10 text-primary shrink-0">
@@ -652,13 +566,6 @@ function BenefitsSection() {
           <div className="space-y-6">
             {/* Card 1 */}
             <div className="reveal relative p-[1px] overflow-hidden rounded-[1.25rem] bg-transparent shadow-[0_0_50px_-12px_rgba(80,118,246,0.08)] hover:shadow-[0_0_30px_-5px_rgba(80,118,246,0.3)] transition-all duration-300 group hover:-translate-y-1">
-              {/* Rotating border beam */}
-              <span
-                className="absolute top-1/2 left-1/2 min-w-[300px] min-h-[300px] w-[200%] aspect-square bg-[conic-gradient(from_0deg,transparent_40%,var(--color-primary)_50%,transparent_60%)] animate-border-beam pointer-events-none"
-                style={{
-                  transform: "translate(-50%, -50%)",
-                }}
-              />
               {/* Inner Content Container */}
               <div className="relative z-10 w-full h-full bg-[#1a1c22] rounded-[1.2rem] p-8 text-left">
                 <div className="grid h-12 w-12 place-items-center rounded-xl bg-primary/15 text-primary group-hover:scale-110 transition-transform duration-300">
@@ -841,13 +748,6 @@ function Stats() {
                   key={s.label}
                   className="reveal relative p-[1px] overflow-hidden rounded-[1.25rem] bg-transparent group shadow-[0_0_50px_-12px_rgba(80,118,246,0.08)] transition-all duration-300 hover:-translate-y-1"
                 >
-                  {/* Rotating border beam */}
-                  <span
-                    className="absolute top-1/2 left-1/2 min-w-[300px] min-h-[300px] w-[200%] aspect-square bg-[conic-gradient(from_0deg,transparent_40%,var(--color-primary)_50%,transparent_60%)] animate-border-beam pointer-events-none"
-                    style={{
-                      transform: "translate(-50%, -50%)",
-                    }}
-                  />
                   {/* Inner content container */}
                   <div className="relative z-10 w-full h-full bg-[#1a1c22] rounded-[1.2rem] p-8 text-left flex flex-col justify-between min-h-[218px]">
                     <span className="text-[11px] font-bold text-muted-foreground uppercase tracking-widest">
@@ -1061,13 +961,6 @@ function ReviewCarousel() {
                   {/* Testimonial Card Wrapper */}
                   {isOdd ? (
                     <div className="relative p-[1px] overflow-hidden rounded-[1.25rem] bg-transparent group shadow-[0_0_30px_-12px_rgba(80,118,246,0.08)]">
-                      {/* Rotating border beam */}
-                      <span
-                        className="absolute top-1/2 left-1/2 min-w-[300px] min-h-[300px] w-[200%] aspect-square bg-[conic-gradient(from_0deg,transparent_40%,var(--color-primary)_50%,transparent_60%)] animate-border-beam pointer-events-none"
-                        style={{
-                          transform: "translate(-50%, -50%)",
-                        }}
-                      />
                       {/* Inner Content Surface */}
                       <div className="relative z-10 p-8 bg-[#1a1c22] rounded-[1.2rem] flex flex-col justify-between h-[318px] sm:h-[298px]">
                         {/* Logo at top & Quote */}
@@ -1164,15 +1057,6 @@ function ReviewCarousel() {
         <div className="reveal w-full mt-20 relative group">
           {/* Border beam container */}
           <div className="relative p-[2px] overflow-hidden rounded-[1.5rem] bg-transparent shadow-[0_0_30px_-5px_rgba(80,118,246,0.15)] group-hover:shadow-[0_0_40px_rgba(80,118,246,0.3)] transition-all duration-500">
-            {/* Rotating border beam */}
-            <span
-              className="absolute top-1/2 left-1/2 min-w-[120%] aspect-square bg-[conic-gradient(from_0deg,transparent_40%,var(--color-primary)_50%,transparent_60%)] animate-border-beam pointer-events-none"
-              style={{
-                width: "150%",
-                height: "150%",
-                transform: "translate(-50%, -50%)",
-              }}
-            />
             {/* Inner Video Container */}
             <div className="relative z-10 rounded-[1.4rem] overflow-hidden bg-black aspect-video">
               <iframe
@@ -1258,13 +1142,6 @@ function FAQSection({ onApply }: { onApply: () => void }) {
                     key={f.q}
                     className="reveal relative p-[1px] overflow-hidden rounded-[1.25rem] bg-transparent group shadow-[0_0_15px_-3px_rgba(80,118,246,0.1)] hover:shadow-[0_0_25px_rgba(80,118,246,0.3)] transition-all duration-300"
                   >
-                    {/* Rotating border beam */}
-                    <span
-                      className="absolute top-1/2 left-1/2 min-w-[300px] min-h-[300px] w-[200%] aspect-square bg-[conic-gradient(from_0deg,transparent_40%,var(--color-primary)_50%,transparent_60%)] animate-border-beam pointer-events-none"
-                      style={{
-                        transform: "translate(-50%, -50%)",
-                      }}
-                    />
                     {/* Inner content container */}
                     <div className="relative z-10 w-full h-full bg-[#15171d] rounded-[1.2rem]">
                       <button
